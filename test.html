@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>ng-repeat animations</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-animate.min.js"></script>
+	<script>
+	function TestCtrl() {
+  var self = this;
+  
+  // initialize an array
+  // buttons in html add/rm items in this array
+  self.people = [
+    { name: "Eric Simons" },
+    { name: "Albert Pai" },
+    { name: "Matthew Greenster" }
+  ];
+  
+
+}
+
+angular.module('app', ['ngAnimate'])
+.controller('TestCtrl', TestCtrl)
+	</script>
+	<style>
+.item {
+  border:1px solid #999;
+  margin-top:15px;
+  padding:15px;
+  border-radius:4px;
+  background:#4278B3;
+  color:#fff;
+}
+
+.item.ng-move,
+.item.ng-enter,
+.item.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.item.ng-leave.ng-leave-active,
+.item.ng-move,
+.item.ng-enter {
+  opacity:0;
+}
+
+.item.ng-leave,
+.item.ng-move.ng-move-active,
+.item.ng-enter.ng-enter-active {
+  opacity:1;
+}
+</style
+	
+	</head>
+	<body ng-app="app" ng-controller="TestCtrl as test">
+    <button ng-click="test.people.push({name:'Steve Jobs'})">Add item to ng-repeat</button>
+    <button ng-click="test.people.pop()">Remove item from ng-repeat</button>
+    
+    <div class="item" ng-repeat="person in test.people">
+      {{ person.name }}
+    </div>
+	
+	</body>
+</html>
